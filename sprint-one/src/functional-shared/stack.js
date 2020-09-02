@@ -7,22 +7,22 @@ var Stack = function() {
 };
 
 var stackMethods = {
-  push: function(value){
-    this.storage[this.counter]=value;
+  push: function(value) {
+    this.storage[this.counter] = value;
     this.counter++;
   },
-  pop: function(){
-    if(this.counter === 0){
+  pop: function() {
+    if (this.counter === 0) {
       return undefined;
     }
     let objKeys = Object.keys(this.storage);
-    let lastElement = objKeys[objKeys.length-1];
+    let lastElement = objKeys[objKeys.length - 1];
     let poppedElement = this.storage[lastElement];
     this.counter--;
     delete this.storage[lastElement];
     return poppedElement;
   },
-  size: function(){
+  size: function() {
     return this.counter;
   }
 };

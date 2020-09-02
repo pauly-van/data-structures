@@ -7,16 +7,16 @@ var Stack = function() {
 
   // Implement the methods below
   someInstance.push = function(value) {
-    storage[counter]=value;
+    storage[counter] = value;
     counter++;
   };
 
   someInstance.pop = function() {
-    if(counter === 0){
+    if (counter === 0) {
       return undefined;
     }
     let objKeys = Object.keys(storage);
-    let lastElement = objKeys[objKeys.length-1];
+    let lastElement = objKeys[objKeys.length - 1];
     let poppedElement = storage[lastElement];
     counter--;
     delete storage[lastElement];

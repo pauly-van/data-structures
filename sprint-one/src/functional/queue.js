@@ -8,12 +8,12 @@ var Queue = function() {
   // Implement the methods below
 
   someInstance.enqueue = function(value) {
-    storage[counter]=value;
+    storage[counter] = value;
     counter++;
   };
 
   someInstance.dequeue = function() {
-    if(counter === 0){
+    if (counter === 0) {
       return undefined;
     }
     let objKeys = Object.keys(storage);

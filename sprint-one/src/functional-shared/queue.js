@@ -7,12 +7,12 @@ var Queue = function() {
 };
 
 var queueMethods = {
-  enqueue: function(value){
-    this.storage[this.counter]=value;
+  enqueue: function(value) {
+    this.storage[this.counter] = value;
     this.counter++;
   },
-  dequeue: function(){
-    if(this.counter === 0){
+  dequeue: function() {
+    if (this.counter === 0) {
       return undefined;
     }
     let objKeys = Object.keys(this.storage);
@@ -22,7 +22,7 @@ var queueMethods = {
     delete this.storage[firstElement];
     return shiftedElement;
   },
-  size: function(){
+  size: function() {
     return this.counter;
   }
 };
