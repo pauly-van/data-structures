@@ -8,18 +8,20 @@ var Queue = function() {
 
 var queueMethods = {
   enqueue: function(value) {
-    this.storage[this.counter] = value;
-    this.counter++;
+    this.storage[this.counter++] = value; 
   },
   dequeue: function() {
+    let resetCnter = 0;
     if (this.counter === 0) {
       return undefined;
     }
     let objKeys = Object.keys(this.storage);
-    let firstElement = objKeys[0];
-    let shiftedElement = this.storage[firstElement];
+    let shiftedElement = this.storage[objKeys[0]];
+    delete this.storage[objKeys[0]];
     this.counter--;
-    delete this.storage[firstElement];
+    for (let key in this.storage) {
+      this.storage[resetCnter++] = this.storage[key];
+    }
     return shiftedElement;
   },
   size: function() {
