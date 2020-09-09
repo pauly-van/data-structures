@@ -4,44 +4,50 @@ var LinkedList = function() {
   list.tail = null;
 
   list.addToTail = function(value) {
-    let tailVal = Node(value);   // create new node
-    if (list.tail !== null) {     // when nodes already exist within our list
 
-      let previousTail = list.tail;  // container to store old tail node
-      previousTail.next = value;  // assign value of new node to next property within previousTail obj
-      list[previousTail.value] = previousTail;  // adds previous tail into list obj
-      list.head["next"] = value;  // assign value to next property of head obj (head.next and PreviousTail.next is now assigned to same 'value' ?)
-      // I think above next needs to point to 2nd node in list instead of value of new node
-      let newVal = Node(value); //  create new node (is this different somehow from line 7?)
-      list.tail = newVal; // point tail to new node
+    let newNode = Node(value); // create new node
+
+    if (list.tail === null && list.head === null) { // when there are no nodes in our list container
+      list.head = newNode;
+      //list.head.next = list.tail;
+      list.tail = newNode;
+
     }
-    if ( list.tail === null && list.head === null)  {  // when there are no nodes in our list container
-      list.tail = tailVal;  // head and tail points to new node
-      list.head = tailVal;
-      list[list.tail[value]] = tailVal; // add node into our list
-      
-    } 
-    
-    //list.tail = tailVal;
- 
-    //console.log(tailVal);
-    
+
+    keyFinder(list, value);
   };
 
+
   list.removeHead = function() {
-    let currentHead = list.head;  // throw away container for storing old head
-    console.log(currentHead);
-    console.log(list[list.head.next]);
-    list.head = list[list.head.next]; //need to figure out how to change next
-    let nextHead = list.head.next; // simplified head next value
-    console.log(nextHead + 'key');
-    list.head = list[nextHead];  // make 2nd node from list head
-    delete list[currentHead.value];  // delete head node from list
-    return currentHead;  // return deleted head node
+    let currentHead = list.head;
+    //now we declare the new head and delete the old one
+    //console.log(currentHead);
+    list.head = list.head.next.next;
+
+    return currentHead.value;
+
+
+    // let currentHead = list.head;  // throw away container for storing old head
+
+    // list.head = list[list.head.next]; //need to figure out how to change next (this is undefined because list[5] deosn't exists when only 2 nodes are in list)
+    // // I think we need to condition a scenario to assign next to tail if there are only 2 nodes
+    // let nextHead = list.head.next; // easy var for head next value
+    // console.log(nextHead + 'key');
+    // list.head = list[nextHead];  // make 2nd node from list head
+    // delete list[currentHead.value];  // delete head node from list
+    // return currentHead;  // return deleted head node
   };
 
   list.contains = function(target) {
-
+    for (let key in list) {
+      //console.log();
+      if ((list[key].value) && list[key].value === target) {
+        return true;
+      } else if ((list[key].value) && list[key].value !== null) {
+      } else {
+        return false;
+      }
+    }
   };
 
   return list;
@@ -53,9 +59,21 @@ var Node = function(value) {
   node.value = value;
   node.next = null;
 
+
   return node;
 };
 
-/*
- * Complexity: What is the time complexity of the above functions?
- */
+var keyFinder = function(list, val) {
+  for (let key in list) {
+    //console.log(list[key].next.value);
+    if (list[key].next === null) {
+      list[key].next = Node(val);
+      list.tail = Node(val);
+      return list[key].value;
+    }
+    if (key.next !== null) {
+      keyFinder(list[key], val);
+    }
+
+  }
+};
