@@ -15,6 +15,8 @@ setPrototype.contains = function(item) {
 setPrototype.remove = function(item) {
 };
 
+let freshSet = new Set();
+
 /*
  * Complexity: What is the time complexity of the above functions?
  */
