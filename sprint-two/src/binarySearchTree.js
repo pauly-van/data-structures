@@ -1,5 +1,18 @@
 var BinarySearchTree = function(value) {
+
 };
+
+BinarySearchTree.prototype.insert = function(node){
+
+};
+
+BinarySearchTree.prototype.contains = function(node){
+};
+
+BinarySearchTree.prototype.depthFirstLog = function(node){
+
+};
+
 
 
 /*
