@@ -77,3 +77,12 @@ var keyFinder = function(list, val) {
 
   }
 };
+
+/*
+ * Complexity: What is the time complexity of the above functions?
+ addToTail is constant. only ever does 3 things- check if space is there, and then add the tail
+ removeHead is constant. we only do one action and that is to reassign the head value to a new one
+ contains is linear. worst case it will loop thru the whole object
+ Node is constant no matter what. it just create empty node and puts the value inside it
+ keyFinder is linear. it loops through the object 
+ */

@@ -36,7 +36,7 @@ treeMethods.contains = function(target) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
- extend is linear complexity
- addchild is constant
- contains is linear
+ extend is linear complexity. worst case is it loops thru entire object keys 
+ addchild is constant. it only ever creates childObj, sets the value to be the one passed in, and pushes it. will never have more steps
+ contains is linear. does a foreach for every value in children. 
  */

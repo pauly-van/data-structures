@@ -79,11 +79,11 @@ Graph.prototype.forEachNode = function(cb) {
 };
 
 /* Complexity: What is the time complexity of the above functions?
- addnode is a constant complexity
- contains is a linear complexity
- removenode is a constant complexity
- hasedge is linear complexity
- addedge is constant
- removeedge is linear
- foreachnode is linear
+ addnode is a constant complexity because no matter what, it just does 1 action
+ contains is a linear complexity because worst case, it will iterate through the entire object
+ removenode is a linear complexity because worst case, it loops thru entire object to find X, and then performs remove
+ hasedge is linear complexity. worst case loops thru entire object to find edge
+ addedge is constant. only 2 things it does even for worst case- push twice.
+ removeedge is linear. loops thru entire thing for worst case. and then splices
+ foreachnode is linear. it will always loop thru the entire thing to perform callback
  */

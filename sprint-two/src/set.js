@@ -28,7 +28,7 @@ setPrototype.remove = function(item) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
- add is a constant complexity
- contains is a linear complexity
- remove is a constant complexity
+ add is a constant complexity. only ever does 1 thing and it sets the item value to 1
+ contains is a linear complexity. it loops through so it could potentially loop thru the entire object for worst case.
+ remove is a constant complexity it only does 2 actions. check if it contains item. and then deletes it
  */

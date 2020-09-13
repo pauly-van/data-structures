@@ -41,4 +41,12 @@ describe('tree', function() {
     expect(tree.contains(8)).to.equal(true);
   });
 
+  // added unit test
+  it('should add multple childs to same parent', function() {
+    tree.addChild(1);
+    tree.addChild(2);
+    expect(tree.contains(1)).to.equal(true);
+    expect(tree.contains(2)).to.equal(true);
+  });
+
 });

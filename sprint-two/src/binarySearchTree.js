@@ -54,9 +54,9 @@ binaryTreeMethods.depthFirstLog = function(cb) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
- Insert is a linear complexity
- contains is a linear complexity
- depthFirstLog is a linear complexity
+ Insert is a linear complexity because worst case, is it will iterate throught entire tree and insert.
+ contains is a linear complexity because worst case, is it will also iterate through the entire tree to find X
+ depthFirstLog is a linear complexity because it will always go through the entire tree and run callback function
  */
 
  

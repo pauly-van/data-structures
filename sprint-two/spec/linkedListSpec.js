@@ -52,4 +52,15 @@ describe('linkedList', function() {
   });
 
   // add more tests here to test the functionality of linkedList
+  it('should be able to add to tail multiple times and reach head when removed till then', function() {
+    linkedList.addToTail(8);
+    linkedList.addToTail(8);
+    linkedList.addToTail(8);
+    linkedList.addToTail(7);
+    linkedList.addToTail(7);
+    linkedList.addToTail(7);
+    linkedList.addToTail(7);
+    linkedList.addToTail(7);
+    expect(linkedList.tail.value).to.equal(7);
+  });
 });

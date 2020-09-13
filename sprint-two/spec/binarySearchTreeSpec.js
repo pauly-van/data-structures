@@ -37,4 +37,10 @@ describe('binarySearchTree', function() {
     binarySearchTree.depthFirstLog(func);
     expect(array).to.eql([5, 2, 3, 7]);
   });
+
+  // added unit test
+  it('should check to see if left is available and automatically insert if thats the case', function() {
+    binarySearchTree.insert(1);
+    expect(binarySearchTree.contains(1)).to.equal(true);
+  });
 });

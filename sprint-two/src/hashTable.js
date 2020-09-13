@@ -4,47 +4,62 @@ var HashTable = function() {
 };
 
 HashTable.prototype.insert = function(k, v) {
-  var index = getIndexBelowMaxForKey(k, this._limit); // create hash value
-  if (this._storage[index] !== undefined) { // if array has items in it already
-    for (let i = 0; i < this._storage[index].length; i++) { // iterate through to see if key is in array block
-      if (this._storage[index][i] === k) { // if it is found than overwrite value
-        this._storage[index] = [k, v];  
+  var index = getIndexBelowMaxForKey(k, this._limit);
+  //return the index. use this.storage and push it into the index
+  if (this._storage[index] && this._storage[index].includes(k)) {
+    for (let i = 0; i < this._storage[index].length; i++) {
+      if (this._storage[index][i] === k) {
+        this._storage[index][i] = v;
       }
     }
-    let tuple = [];   
-    let currentVal = this._storage[index];
-    tuple.push(currentVal, [k, v]);
-    this._storage[index] = tuple; // but if key isn't in array block but has other items in it create a tuple array
+  } else if (this._storage[index]) {
+    this._storage[index].push([k, v]);
   } else {
-    this._storage[index] = [k, v]; // if no items are in array index than simply add key and value
+    this._storage[index] = [k, v];
   }
 };
 
+
+
 HashTable.prototype.retrieve = function(k) {
+  let storage = this._storage;
   var index = getIndexBelowMaxForKey(k, this._limit);
-  if (this._storage[index] === undefined) { // if nothing is in array block return undefined
+  if (this._storage[index] === undefined) {
     return undefined;
-  } else if (this._storage[index].length > 1) { // but if there are more than one item in array block
-    for (let i = 0; i < this._storage[index].length; i++) { // iterate through tuple arrays
-      if (this._storage[index][i][0] === k) { // find the key that matches what we want to look for
-        return this._storage[index][i][1]; // return it
+  } else if (this._storage[index].length > 1) {
+    for (let i = 0; i < this._storage[index].length; i++) {
+      if (storage[index][i].includes(k)) {
+      //if the result is an array of 2
+        if (storage[index][i].length === 2) {
+          return storage[index][i][1];
+        } else {
+        //now if the result is an array of one
+          return this._storage[index][1];
+        }
       }
     }
+    return this._storage[index][0];
   }
-  return this._storage[index][1]; // but if only one item than return the value thats in the array block
 };
 
 HashTable.prototype.remove = function(k) {
-  var index = getIndexBelowMaxForKey(k, this._limit);
-  delete this._storage[index]; // delete whole array block
-};
-
-
+  var index = getIndexBelowMaxForKey(k, this._limit); //if it's an array
+  if (this._storage[index].length > 1) {
+    for (let i = 0; i < this._storage[index].length; i++) {
+      if (Array.isArray(this._storage[index]) && this._storage[index].includes(k)) {
+        this._storage[index].splice(0, 2);
+      }
+    }
+    //else if it's just an object, delete
+  } else {
+    delete this._storage[index];
+  }
+};   
 /*
  * Complexity: What is the time complexity of the above functions?
- insert is linear complexity
- retrieve is a linear complexity
- remove is a constant complexity
+ insert is linear complexity because there is a set number of actions to take (generate hash value, iterate through key, overwrite or add tuple) that don't increase and it's the same for anything you insert
+ retrieve is a linear complexity because we just iterate through the whole object to find X, for the worst case scenario. 
+ remove is a linear complexity because there are steps that don't increase complexity. it just iterates through the array if multiple values exist. best case, it's constant, but worst case is linear depending on how long the array is.
  */
 
 
