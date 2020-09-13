@@ -39,10 +39,12 @@ HashTable.prototype.remove = function(k) {
   delete this._storage[index]; // delete whole array block
 };
 
-var newTable = new HashTable();
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ insert is linear complexity
+ retrieve is a linear complexity
+ remove is a constant complexity
  */
 
 

@@ -77,3 +77,13 @@ Graph.prototype.forEachNode = function(cb) {
     cb(key);
   }
 };
+
+/* Complexity: What is the time complexity of the above functions?
+ addnode is a constant complexity
+ contains is a linear complexity
+ removenode is a constant complexity
+ hasedge is linear complexity
+ addedge is constant
+ removeedge is linear
+ foreachnode is linear
+ */

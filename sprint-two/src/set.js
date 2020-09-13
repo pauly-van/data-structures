@@ -25,8 +25,10 @@ setPrototype.remove = function(item) {
   }
 };
 
-let freshSet = new Set();
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ add is a constant complexity
+ contains is a linear complexity
+ remove is a constant complexity
  */
